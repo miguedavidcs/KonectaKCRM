@@ -65,7 +65,7 @@
                 int indiceInicial = (paginaActualEmpleados - 1) * registrosPorPaginaEmpleados;
                 int indiceFinal = indiceInicial + registrosPorPaginaEmpleados;
 
-                String queryData = "SELECT nombre, salario FROM Empleado LIMIT " + indiceInicial + ", " + registrosPorPaginaEmpleados;
+                String queryData = "SELECT nombre, salario,id FROM Empleado LIMIT " + indiceInicial + ", " + registrosPorPaginaEmpleados;
                 sta = con.createStatement();
                 rs = sta.executeQuery(queryData);
 
@@ -75,7 +75,7 @@
                 <thead class="thead-dark" >
                     <tr height="100px">
                         <th colspan="2">Tabla de Usuarios</th>
-                        <th><a href="insertarUsuarios.jsp"><img src="imagen/plus.png"></th></a>
+                        <th><a href="insertarEmpleado.jsp"><img src="imagen/plus.png"></th></a>
                     </tr>
                     <tr>
                         <th>Nombre</th>
@@ -89,9 +89,12 @@
                     <td><%= rs.getString("nombre")%></td>
                     <td><%= rs.getString("salario")%></td>
                     <td>
-                        <img src="imagen/Edita.png" width="30" height="30">
+                        <a href="EditarEmpleado.jsp?id=<%=rs.getString("id")%>">
+                        <img src="imagen/Edita.png" width="30" height="30"> </a>
+                        <a href="EliminarEmpleado.jsp?id=<%=rs.getString("id")%>">
                         <img src="imagen/resta.png" width="30" height="30">
-                    </td>
+                        </a>
+                        </td>
                 </tr>
                 <%
                         }
